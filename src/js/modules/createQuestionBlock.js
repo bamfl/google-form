@@ -1,7 +1,10 @@
 const createQuestionBlock = ({ id, text, date }) => {
+  const content = document.querySelector('#content');
   const container = document.querySelector('#container');
   const noQuestionsBlock = document.querySelector('.questions-no');
 
+	content.style.display = 'block';
+	
   const questionBlock = document.createElement('div');
   questionBlock.classList.add('question-block');
 

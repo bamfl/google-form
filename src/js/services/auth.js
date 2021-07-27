@@ -1,5 +1,4 @@
 const authWithEmailAndPassword = async (email, password) => {
-	console.log(email, password);
 	const apiKey = "AIzaSyBRlhWhaJdchO5qmrX2XZbzM3DW5dz0Yt4";
 
 	const response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`, {
@@ -14,6 +13,10 @@ const authWithEmailAndPassword = async (email, password) => {
 		})
 	});
 
+	if (!response.ok) {
+		throw new Error('Ошибка, неправильный email или пароль');
+	}
+	
 	return await response.json();
 };
 

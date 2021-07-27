@@ -1,7 +1,7 @@
 import requestDB from "../services/requestDB";
 import createQuestionBlock from './createQuestionBlock';
 
-const form = (url) => {
+const form = (url, token) => {
 	const form = document.getElementById('form'),
 				input = form.querySelector('#question-input'),
 				submitBtn = form.querySelector('#submitBtn');
@@ -18,7 +18,7 @@ const form = (url) => {
 			date: new Date().toJSON()
 		};
 
-		requestDB(url, 'POST', question)
+		requestDB(url + token, 'POST', question)
 			.then(data => {
 				question.id = data.name;
 				return question;
