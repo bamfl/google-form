@@ -1,5 +1,5 @@
 import createModal from "./createModal";
-import authWithEmailAndPassword from "../services/auth";
+import authWithEmailAndPassword from "../services/authRequest";
 import loadData from './loadData';
 import form from "./form";
 
@@ -17,6 +17,7 @@ const auth = () => {
 		const password = modalAuth.querySelector('#password');
 		const authBtnSubmit = modalAuth.querySelector('#auth-btn');		
 		const noAuthBlock = document.querySelector('#no-auth');		
+		const content = document.querySelector('#content');
 		
 		modalAuth.addEventListener('input', () => {
 			email.value.length >= 6 && password.value.length >= 6 ? authBtnSubmit.removeAttribute('disabled') : authBtnSubmit.setAttribute('disabled', true);
@@ -35,6 +36,7 @@ const auth = () => {
 				.then(() => {
 					noAuthBlock.remove();
 					modalAuth.innerHTML = '<h2>Успешный вход</h2>';
+					content.style.display = 'block';
 				})
 				.catch(() => modalAuth.innerHTML = '<h2>Ошибка, неправильный email или пароль</h2>')
 				.finally(() => {
